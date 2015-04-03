@@ -1,0 +1,80 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie6" lang="zh-cn"><![endif]-->
+<!--[if IE 7 ]><html class="ie7" lang="zh-cn"><![endif]-->
+<!--[if IE 8 ]><html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="zh-cn">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" href="/static/img/icon/favicon.ico">
+	{% block meta %}{% end %}
+
+	<title>{% block title %}{% end %}</title>
+	<link href="/static/css/base.css" rel="stylesheet" type="text/css" />
+	{% block pagecss %}
+	{% end %}
+
+	<script src="/static/js/lib/jquery.js" type="text/javascript"></script>
+    <script src="/static/js/lib/common.js" type="text/javascript"></script>
+	{% block pagejs_before %}{% end %}
+</head>
+<body>	
+    <div class="doc">
+    	<div id="header">
+            <div class="logo"></div> 
+            <ul class="nav">
+                <li class="first-item">
+                    <div class="select_box clearfix">
+                            <input data-name="phone" id="phone" type="text" readonly="readonly" value="{{ param['cur']}}" class="ellipsis" title="{{ param['cur']}}">
+                            <ul class="long_ul ellipsis" style="display: none;">
+                                {% for pack in param["package"] %}
+                                <li title="{{ pack }}" class="ellipsis">{{ pack }}</li>
+                                {% end %}
+                            </ul>
+                    </div>
+                </li>
+                <li class="nav-item {% if param['nav']=='log' %} cur {% end %}" style="margin-left:10px"><a href="/log">日志</a></li>
+                <li class="nav-item {% if param['nav']=='photo' %} cur {% end %}"><a href="/photo">照片</a></li>
+                <li class="nav-item {% if param['nav']=='video' %} cur {% end %}"><a href="/video">视频</a></li>
+                <li class="nav-item {% if param['nav']=='message' %} cur {% end %}"><a href="/message">短信</a></li>
+                <li class="nav-item {% if param['nav']=='note' %} cur {% end %}"><a href="/note">备忘录</a></li>
+                <li class="nav-item {% if param['nav']=='address' %} cur {% end %}"><a href="address">通讯录</a></li>
+                <li class="nav-item {% if param['nav']=='data' %} cur {% end %}"><a href="/data">隐私数据</a></li>
+                <li class="nav-item {% if param['nav']=='calendar' %} cur {% end %}"><a href="calendar">日历文件</a></li>
+                <li class="nav-item {% if param['nav']=='info' %} cur {% end %}"><a href="/info">手机信息</a></li>
+                <li class="nav-item {% if param['nav']=='config' %} cur {% end %}"><a href="config">系统配置</a></li>
+                <li class="nav-item {% if param['nav']=='jail' %} cur {% end %}"><a href="/jail">越狱数据</a></li>
+            </ul>
+        </div> 
+		
+		{% block body %}{% end %}
+		
+    </div>
+    <script type="text/html" id="cookieTmpl">
+            <table class="tbl">
+              <thead>
+                  <tr>
+                      <th><span>记录</span></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {if(opts.length==0)}
+                       <tr class="main-tr"><td class="nodata">暂无数据</td></tr>
+                   {/if}
+                  {for(var i=0; i<opts.length; i++)}
+                    <tr class="main-tr">
+                        <td title="{=opts[i]}">{=opts[i]}</td>
+                    </tr>
+                  {/for}
+              </tbody>
+          </table>
+    </script>
+    
+	<!-- page js -->
+{% block pagejs %}{% end %}
+<script type="text/javascript" src="/static/js/page/base.js"></script>
+</body>
+</html>

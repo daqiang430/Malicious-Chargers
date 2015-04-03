@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block meta %}
+{% end %}
+
+{% block title %}恶意充电宝－通讯录{% end %}
+
+{% block pagecss %} {% end %}
+{% block pagejs_before %}
+
+{% end %}
+
+{% block body %}
+<div id="main">
+    <div class="inner-title">
+        <span class="font-green select-phone">{{ param["cur"] }}</span> <span> &gt; </span><span class="active-nav">通讯录</span>
+    </div>
+    <div class="inner-cont">
+       <table class="tbl" id="addressTbl">
+          <colgroup>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col width="200"></col>
+         </colgroup>
+         <thead>
+            <tr> 
+               <th><span>姓名</span></th>
+               <th><span>昵称</span></th>
+               <th><span>电话</span></th>
+               <th><span>单位</span></th>
+               <th><span>生日</span></th>
+               <th><span>邮箱</span></th>
+               <th><span>地址</span></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="main-tr">
+                <td>smx</td>
+                <td>smx</td>
+                <td>smx</td>
+                <td>smx</td>
+                <td>smx</td>
+                <td>smx</td>
+                <td>smx</td>
+            </tr>
+         </tbody>
+       </table>
+    </div>
+</div>
+<script type="text/html" id="addressTmpl">
+    {if(opts.records.length==0)}
+        <tr class="main-tr"><td colspan="7" class="nodata">暂无数据</td></tr>
+    {/if}
+    {for(var i=0; i<opts.records.length; i++)}
+        <tr class="main-tr">
+          <td title="{=opts.records[i].first}">{=opts.records[i].first}</td>
+          <td title="{=opts.records[i].Nickname}">{=opts.records[i].Nickname}</td>
+          <td title="{=opts.records[i].phone}">{=opts.records[i].phone}</td>
+          <td title="{=opts.records[i].Organization}">{=opts.records[i].Organization}{=opts.records[i].Department}{=opts.records[i].JobTitle}</td>
+          <td title="{=opts.records[i].Birthday}">{=opts.records[i].Birthday}</td>
+          <td title="{=opts.records[i].email}">{=opts.records[i].email}</td>
+          <td title="{=opts.records[i].address}">{=opts.records[i].address}</td>
+        </tr>
+    {/for}
+</script>
+{% end %}
+
+{% block pagejs %}
+ <script src="/static/js/page/address.js" type="text/javascript"></script>
+{% end %}

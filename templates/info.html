@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block meta %}
+{% end %}
+
+{% block title %}恶意充电宝－手机信息{% end %}
+
+{% block pagecss %}{% end %}
+{% block pagejs_before %}
+
+{% end %}
+
+{% block body %}
+<div id="main">
+    <div class="inner-title">
+        <span class="font-green select-phone">{{ param["cur"] }}</span> <span> &gt; </span><span class="active-nav">手机信息</span>
+    </div>
+    <div class="inner-cont">
+       <table class="tbl" id="phoneTbl">
+         <tbody>
+              
+         </tbody>
+       </table>
+    </div>
+</div>
+
+<script type="text/html" id="deviceTmpl">
+              <tr class="main-tr"><td>激活状态</td><td>{if(opts.ActivationState=="Activated")}已激活{else}未激活{/if}</td></tr>
+              <tr class="main-tr"><td>序列号</td><td>{=opts.SerialNumber}</td></tr>
+              <tr class="main-tr"><td>设备名称</td><td>{=opts.DeviceName}</td></tr>
+              <tr class="main-tr"><td>设备标识</td><td>{=opts.UniqueDeviceID}</td></tr>
+              <tr class="main-tr"><td>设备类型</td><td>{=opts.ProductType}</td></tr>
+              <tr class="main-tr"><td>设备颜色</td><td>{if(opts.DeviceColor=="#e1e4e3")}白色{elseif(opts.DeviceColor=="#3b3b3c")}黑色{else}土豪金{/if}</td></tr>
+              <tr class="main-tr"><td>是否开启密码保护</td><td>{if(opts.PasswordProtected=="true")}开启{else}未开启{/if}</td></tr>
+              <tr class="main-tr"><td>系统版本</td><td>{=opts.ProductVersion}</td></tr>
+              <tr class="main-tr"><td>产品版本</td><td>{=opts.BuildVersion}</td></tr>
+              <tr class="main-tr"><td>固件版本</td><td>{=opts.FirmwareVersion}</td></tr>
+              <tr class="main-tr"><td>CPU架构</td><td>{=opts.CPUArchitecture}</td></tr>
+              <tr class="main-tr"><td>芯片ID</td><td>{=opts.ChipID}</td></tr>
+              <tr class="main-tr"><td>芯片序列号</td><td>{=opts.ChipSerialNo}</td></tr>
+              <tr class="main-tr"><td>硬件类型</td><td>{=opts.HardwareModel}</td></tr>
+              <tr class="main-tr"><td>硬件型号</td><td>{=opts.ModelNumber}</td></tr>
+              <tr class="main-tr"><td>硬件平台</td><td>{=opts.HardwarePlatform}</td></tr>
+              <tr class="main-tr"><td>WIFI地址</td><td>{=opts.WiFiAddress}</td></tr>
+              <tr class="main-tr"><td>蓝牙地址</td><td>{=opts.BluetoothAddress}</td></tr>
+              <tr class="main-tr"><td>IMEI</td><td>{=opts.InternationalMobileEquipmentIdentity}</td></tr>
+              <tr class="main-tr"><td>MLB序列号</td><td>{=opts.MLBSerialNumber}</td></tr>
+              <tr class="main-tr"><td>地区信息</td><td>{=opts.RegionInfo}</td></tr>
+              <tr class="main-tr"><td>时区信息</td><td>{=opts.TimeZone}</td></tr>
+</script>
+
+{% end %}
+
+{% block pagejs %}
+ <script src="/static/js/page/info.js" type="text/javascript"></script>
+{% end %}

